@@ -28,7 +28,7 @@ public class SettingsDialog extends JDialog {
     private JPanel panelCenter = new JPanel();
     private JPanel panelSouth = new JPanel();
     private JLabel numInLineLabel = new JLabel("Number of stones in line:");
-    private JComboBox numInLineBox = new JComboBox();
+    private JComboBox<Integer> numInLineBox = new JComboBox<Integer>();
     private JLabel dimLabelX = new JLabel("Field width:");
     private JTextField dimFieldX = new JTextField();
     private JLabel dimLabelY = new JLabel("Field height:");
@@ -48,13 +48,13 @@ public class SettingsDialog extends JDialog {
         this.setSize(200, 150);
         this.panelCenter.setLayout(new GridBagLayout());
         this.panelSouth.setLayout(new GridBagLayout());
-        this.numInLineBox.setModel(new ComboBoxModel() {
+        this.numInLineBox.setModel(new ComboBoxModel<Integer>() {
             @Override
             public int getSize() {
                 return NUMS_IN_LINE.length;
             }
             @Override
-            public Object getElementAt(int index) {
+            public Integer getElementAt(int index) {
                 // auto boxing
                 return NUMS_IN_LINE[index];
             }
@@ -74,12 +74,12 @@ public class SettingsDialog extends JDialog {
             public void removeListDataListener(ListDataListener l) {
             }
         });
-        this.numInLineBox.setRenderer(new ListCellRenderer() {
-            @Override
-            public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected,
-                    boolean cellHasFocus) {
+        this.numInLineBox.setRenderer(new ListCellRenderer<Integer>() {
+			@Override
+			public Component getListCellRendererComponent(JList<? extends Integer> list, Integer value, int index,
+					boolean isSelected, boolean cellHasFocus) {
                 return new JLabel(((Integer) value).toString());
-            }
+			}
         });
         this.panelCenter.add(numInLineLabel, new GridBagConstraints(0, 0, 1, 1,
                 0.0, 0.0,

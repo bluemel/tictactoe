@@ -55,11 +55,11 @@ public class TicTacToeSwing implements UserInterface {
     private JPanel playingField = new JPanel();
     private JPanel south = new JPanel();
     private JLabel player1Label = new JLabel();
-    private JComboBox player1Icon = new JComboBox();
+    private JComboBox<ImageIcon> player1Icon = new JComboBox<ImageIcon>();
     private Border raisedBorder = new EtchedBorder(EtchedBorder.RAISED);
     private JTextField player1Field = new JTextField();
     private JLabel player2Label = new JLabel();
-    private JComboBox player2Icon = new JComboBox();
+    private JComboBox<ImageIcon> player2Icon = new JComboBox<ImageIcon>();
     private JTextField player2Field = new JTextField();
     private JTextField messageField = new JTextField();
     private JButton newButton = new JButton("New Match");
@@ -134,7 +134,7 @@ public class TicTacToeSwing implements UserInterface {
         refreshButtons();
         this.south.setLayout(new GridBagLayout());
         this.player1Label.setText("Player 1");
-        this.player1Icon.setModel(new ComboBoxModel() {
+        this.player1Icon.setModel(new ComboBoxModel<ImageIcon>() {
             @Override
             public void addListDataListener(final ListDataListener l) {
             }
@@ -146,7 +146,7 @@ public class TicTacToeSwing implements UserInterface {
                 return playerIcons.length;
             }
             @Override
-            public Object getElementAt(final int index) {
+            public ImageIcon getElementAt(final int index) {
                 return playerIcons[index];
             }
             @Override
@@ -166,16 +166,16 @@ public class TicTacToeSwing implements UserInterface {
                 return iconPlayer1;
             }
         });
-        this.player1Icon.setRenderer(new ListCellRenderer() {
-            @Override
-            public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected,
-                    boolean cellHasFocus) {
+        this.player1Icon.setRenderer(new ListCellRenderer<ImageIcon>() {
+			@Override
+			public Component getListCellRendererComponent(JList<? extends ImageIcon> list, ImageIcon value, int index,
+					boolean isSelected, boolean cellHasFocus) {
                 if (value == icon1) {
                     return playerIconsComponents[0];
                 } else {
                     return playerIconsComponents[1];
                 }
-            }
+			}
         });
         this.player1Label.addMouseListener(new MouseAdapter() {
             @Override
@@ -187,7 +187,7 @@ public class TicTacToeSwing implements UserInterface {
             }
         });
         this.player2Label.setText("Player 2");
-        this.player2Icon.setModel(new ComboBoxModel() {
+        this.player2Icon.setModel(new ComboBoxModel<ImageIcon>() {
             @Override
             public void addListDataListener(final ListDataListener l) {
             }
@@ -199,7 +199,7 @@ public class TicTacToeSwing implements UserInterface {
                 return playerIcons.length;
             }
             @Override
-            public Object getElementAt(final int index) {
+            public ImageIcon getElementAt(final int index) {
                 return playerIcons[index];
             }
             @Override
@@ -219,16 +219,16 @@ public class TicTacToeSwing implements UserInterface {
                 return iconPlayer2;
             }
         });
-        this.player2Icon.setRenderer(new ListCellRenderer() {
-            @Override
-            public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected,
-                    boolean cellHasFocus) {
+        this.player2Icon.setRenderer(new ListCellRenderer<ImageIcon>() {
+			@Override
+			public Component getListCellRendererComponent(JList<? extends ImageIcon> list, ImageIcon value, int index,
+					boolean isSelected, boolean cellHasFocus) {
                 if (value == icon1) {
                     return playerIconsComponents[0];
                 } else {
                     return playerIconsComponents[1];
                 }
-            }
+			}
         });
         this.player2Label.addMouseListener(new MouseAdapter() {
             @Override
